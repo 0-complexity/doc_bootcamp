@@ -1,5 +1,11 @@
 ## Setup Docker Machine on a Virtual Machine
 
+Intro: https://docs.docker.com/machine/overview/
+
+See:
+- For installing Docker (machine + engine) completelly: https://docs.docker.com/engine/installation/linux/ubuntu/
+- For only installing Docker Machine: https://docs.docker.com/machine/install-machine/
+
 Below we provide a step by step guide on how to set-up a working Drupal environment deployed in two Docker containers, one for Drupal and one for MySQL.
 
 Create a new cloud space, suggested name is 'Drupal'
@@ -7,7 +13,7 @@ Create a new cloud space, suggested name is 'Drupal'
 
 * Add a new virtual machine to the cloud space, suggested name 'DM-Host', this virtual machine will be used to host docker machine.
 
-* Add following port forwardings for this virtual machine:
+* Add following port forwards for this virtual machine:
  * 7122:22
  * 2376:2376
 
@@ -30,7 +36,7 @@ Create a new cloud space, suggested name is 'Drupal'
 	sudo adduser new_user_name
 	sudo adduser new_user_name sudo
 	```
-	
+
 * Logout and login again as new_user_name
 
 * Add your public key (`cat ~/.shh/id_rsa.pub`) to the remote `authorized_keys`:
@@ -40,16 +46,16 @@ Create a new cloud space, suggested name is 'Drupal'
 	vi ~/.ssh/authorized_keys
 	```
 
-* In order to meet [the prerequisites of Docker](https://docs.docker.com/engine/installation/linux/ubuntulinux/) and in order to make sure that your Docker version is 1.8.3 or higher: 
+* In order to meet [the prerequisites of Docker](https://docs.docker.com/engine/installation/linux/ubuntulinux/) and in order to make sure that your Docker version is 1.8.3 or higher:
 
-	```shell
+	```
 	sudo apt-get update
 	sudo apt-get install linux-image-extra-$(uname -r)
 	```
-	
+
 * Enable usage of sudo without password (needed for the next step, installation of docker-machine from local machine):
 
-	```shell
+	```
 	echo ‘<new_username> ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/<new_username>
 	sudo chmod 400 /etc/sudoers.d/<new_username> => only the owner (root) will have read access
 	```
@@ -70,7 +76,7 @@ Create a new cloud space, suggested name is 'Drupal'
 	```shell
 	docker-machine ls
 	```
-	
+
 * Make the newly created docker machine current:
 
 	```shell
